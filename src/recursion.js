@@ -6,33 +6,117 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
+
+//input: n - number
+//output: factorial - number
+
+// create edge case for negative numbers as they don't have factorials
+// create base case if n is equal to 0, then return 1
+// create recursive case to get product of n times function(n - 1);
+
 var factorial = function(n) {
+  if (n < 0) {
+    return null;
+  }
+  if (n === 0) {
+    return 1;
+  }
+  return n * factorial(n - 1);
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
+
+// input: numbers - array
+// output: sum - number
+// create copy of the input array
+// create the base case so function can produce result without recursing
+// create recursive case to sum the last element with the sum
 var sum = function(array) {
+  var copy = array.slice();
+  if (copy.length === 0) {
+    return 0;
+  } else {
+    return copy.pop() + sum(copy);
+  }
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+// input: numbers - nested array
+// output: sum - number
+// flatten the nested array
+// create base case for end point
+// create recursive case to sum each popped off number
 var arraySum = function(array) {
+  var merged = array.flat(Infinity);
+  if (merged.length === 0) {
+    return 0;
+  }
+    return merged.pop() + arraySum(merged);
 };
 
 // 4. Check if a number is even.
+// input: number - num
+// output: true/false - boolean
+// convert input to absolute value
+// create the base case
+// if number is equal to 0 then return true
+// else if number is equal to 1 then return false
+// create recursive case by subtracting 2
 var isEven = function(n) {
+  var abs = Math.abs(n);
+  if (abs === 0) {
+    return true;
+  }
+  if (abs === 1) {
+    return false;
+  }
+  return isEven(abs - 2);
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
+
+// input: number - number
+// output: sum - number
+//
+// convert n to absolute value
+// create base case of n is equal to 0
+// create case for positive numbers
+// if positive, return input minus 1 plus function taking in input + 1
+// if negative, return input plus 1 plus function taking input + 1
 var sumBelow = function(n) {
+  if (n === 0) {
+    return 0;
+  }
+  if (n > 0) {
+    return (n - 1 + sumBelow(n - 1))
+  };
+  if (n < 0) {
+    return (n + 1 + sumBelow(n + 1))
+  };
 };
+
+console.log(sumBelow(7))
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+// input: 2 numbers - num
+// output: numbers - array
+// create base case
+//
 var range = function(x, y) {
+  var result = [];
+  if (x === y ) {
+    return 0;
+  }
+    return result.push(range(x + 1));
 };
+
+
+3
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
